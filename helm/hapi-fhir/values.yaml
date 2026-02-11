@@ -21,3 +21,12 @@ ingress:
   annotations: {}
   hosts: []
   tls: []
+
+config:
+  enabled: false
+  data: {}
+  # Exemplo:
+  # data:
+  #   hapi.properties: |
+  #     hapi.fhir.default_encoding=json
+  #     hapi.fhir.allow_external_references=true
