@@ -1,6 +1,6 @@
 image:
-  repository: your-registry/health-hapi-fhir
-  tag: "latest"
+  repository: ghcr.io/lilianasacorreia/health-hapi-fhir
+  tag: "1.0.0"
   pullPolicy: IfNotPresent
 
 service:
@@ -9,11 +9,9 @@ service:
 
 resources: {}
 
-env: []
-# Exemplo:
-# env:
-#   - name: SPRING_DATASOURCE_URL
-#     value: jdbc:postgresql://postgres:5432/fhir
+env:
+   - name: SPRING_DATASOURCE_URL
+     value: jdbc:postgresql://postgres:5432/fhir
 
 ingress:
   enabled: false
