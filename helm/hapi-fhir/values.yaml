@@ -1,5 +1,5 @@
 image:
-  repository: ghcr.io/lilianasacorreia/health-hapi-fhir
+  repository: ghcr.io/lilianasacorreia/hapi-fhir
   tag: "0.1.0"
   pullPolicy: IfNotPresent
 
