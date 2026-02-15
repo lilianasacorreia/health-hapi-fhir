@@ -11,7 +11,7 @@ resources: {}
 
 env:
   - name: SPRING_DATASOURCE_URL
-    value: "jdbc:postgresql://hapi-postgres:5432/fhir"
+    value: "jdbc:postgresql://hapi-postgres:5432/hapi"
   - name: SPRING_DATASOURCE_USERNAME
     value: "admin"
   - name: SPRING_DATASOURCE_PASSWORD
