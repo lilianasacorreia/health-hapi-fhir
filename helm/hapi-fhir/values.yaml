@@ -22,6 +22,8 @@ env:
     value: "admin"
   - name: SPRING_DATASOURCE_PASSWORD
     value: "admin"
+  - name:  SPRING_JPA_DATABASE_PLATFORM
+    value: "org.hibernate.dialect.PostgreSQLDialect"
 
 ingress:
   enabled: false
