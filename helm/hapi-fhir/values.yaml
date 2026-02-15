@@ -10,8 +10,8 @@ service:
 resources: {}
 
 env:
-   - name: SPRING_DATASOURCE_URL
-     value: jdbc:postgresql://postgres:5432/fhir
+  - name: SPRING_DATASOURCE_URL
+    value: "jdbc:postgresql://postgres:5432/fhir"
 
 ingress:
   enabled: false
@@ -23,8 +23,3 @@ ingress:
 config:
   enabled: false
   data: {}
-  # Exemplo:
-  # data:
-  #   hapi.properties: |
-  #     hapi.fhir.default_encoding=json
-  #     hapi.fhir.allow_external_references=true
