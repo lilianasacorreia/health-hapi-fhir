@@ -19,27 +19,50 @@ spec:
         - name: hapi-fhir
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
+
           env:
             {{- range .Values.env }}
             - name: {{ .name }}
               value: {{ .value | quote }}
             {{- end }}
+
+          startupProbe:
+            httpGet:
+              path: /fhir/metadata
+              port: 8080
+            failureThreshold: 60
+            periodSeconds: 5
+
           readinessProbe:
             httpGet:
               path: /fhir/metadata
               port: 8080
-            initialDelaySeconds: 20
+            initialDelaySeconds: 30
             periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 6
+
           livenessProbe:
             httpGet:
               path: /fhir/metadata
               port: 8080
-            initialDelaySeconds: 40
+            initialDelaySeconds: 60
             periodSeconds: 20
+            timeoutSeconds: 2
+            failureThreshold: 6
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-volumeMounts:
-  - name: config-volume
-    mountPath: /config
+
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "hapi-fhir.name" . }}-config
