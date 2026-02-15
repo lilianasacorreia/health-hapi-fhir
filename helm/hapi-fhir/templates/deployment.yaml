@@ -23,6 +23,7 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+              protocol: TCP
 
           env:
             {{- range .Values.env }}
@@ -30,39 +31,32 @@ spec:
               value: {{ .value | quote }}
             {{- end }}
 
-          startupProbe:
-            httpGet:
-              path: /fhir/metadata
-              port: 8080
-            failureThreshold: 60
-            periodSeconds: 5
-
           readinessProbe:
             httpGet:
               path: /fhir/metadata
               port: 8080
-            initialDelaySeconds: 30
+            initialDelaySeconds: 20
             periodSeconds: 10
-            timeoutSeconds: 2
-            failureThreshold: 6
 
           livenessProbe:
             httpGet:
               path: /fhir/metadata
               port: 8080
-            initialDelaySeconds: 60
+            initialDelaySeconds: 40
             periodSeconds: 20
-            timeoutSeconds: 2
-            failureThreshold: 6
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 
+          {{- if .Values.config.enabled }}
           volumeMounts:
             - name: config-volume
               mountPath: /config
+          {{- end }}
 
+      {{- if .Values.config.enabled }}
       volumes:
         - name: config-volume
           configMap:
             name: {{ include "hapi-fhir.name" . }}-config
+      {{- end }}
