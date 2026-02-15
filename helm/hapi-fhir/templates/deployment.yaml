@@ -19,11 +19,8 @@ spec:
         - name: hapi-fhir
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-
           ports:
-            - name: http
-              containerPort: 8080
-              protocol: TCP
+            - containerPort: 8080
 
           env:
             {{- range .Values.env }}
@@ -35,14 +32,14 @@ spec:
             httpGet:
               path: /fhir/metadata
               port: 8080
-            initialDelaySeconds: 20
+            initialDelaySeconds: 30
             periodSeconds: 10
 
           livenessProbe:
             httpGet:
               path: /fhir/metadata
               port: 8080
-            initialDelaySeconds: 40
+            initialDelaySeconds: 60
             periodSeconds: 20
 
           resources:
