@@ -11,7 +11,15 @@ resources: {}
 
 env:
   - name: SPRING_DATASOURCE_URL
-    value: "jdbc:postgresql://postgres:5432/fhir"
+    value: "jdbc:postgresql://hapi-postgres:5432/fhir"
+  - name: SPRING_DATASOURCE_USERNAME
+    value: "admin"
+  - name: SPRING_DATASOURCE_PASSWORD
+    value: "admin"
+  - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+    value: "org.postgresql.Driver"
+  - name: SPRING_JPA_DATABASE_PLATFORM
+    value: "org.hibernate.dialect.PostgreSQLDialect"
 
 ingress:
   enabled: false
