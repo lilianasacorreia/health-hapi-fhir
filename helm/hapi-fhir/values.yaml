@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/lilianasacorreia/hapi-fhir
-  tag: "0.1.1"
+  tag: "0.1.2"
   pullPolicy: IfNotPresent
 
 service:
@@ -17,12 +17,18 @@ resources:
 
 env:
   - name: SPRING_DATASOURCE_URL
-    value: "jdbc:postgresql://hapi-postgresh:5432/hapi"
+    value: "jdbc:postgresql://hapi-postgres:5432/hapi"
+
   - name: SPRING_DATASOURCE_USERNAME
     value: "admin"
+
   - name: SPRING_DATASOURCE_PASSWORD
     value: "admin"
-  - name:  SPRING_JPA_DATABASE_PLATFORM
+
+  - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+    value: "org.postgresql.Driver"
+
+  - name: SPRING_JPA_DATABASE_PLATFORM
     value: "org.hibernate.dialect.PostgreSQLDialect"
 
 ingress:
