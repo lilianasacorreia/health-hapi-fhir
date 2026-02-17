@@ -3,9 +3,9 @@ replicaCount: 1
 
 image:
   # -- registry where the HAPI FHIR server image is hosted
-  registry: docker.io
+  registry: ghcr.io
   # -- the path inside the repository
-  repository: ghcr.io/lilianasacorreia/hapi-fhir
+  repository: lilianasacorreia/hapi-fhir
   # -- the image tag. As of v5.7.0, this is the `distroless` flavor by default, add `-tomcat` to use the Tomcat-based image.
   tag: "0.1.5"
   # -- image pullPolicy to use
