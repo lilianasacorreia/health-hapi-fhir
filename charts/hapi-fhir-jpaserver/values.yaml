@@ -7,7 +7,7 @@ image:
   # -- the path inside the repository
   repository: lilianasacorreia/hapi-fhir
   # -- the image tag. As of v5.7.0, this is the `distroless` flavor by default, add `-tomcat` to use the Tomcat-based image.
-  tag: "0.1.5"
+  tag: "0.1.6"
   # -- image pullPolicy to use
   pullPolicy: IfNotPresent
 
